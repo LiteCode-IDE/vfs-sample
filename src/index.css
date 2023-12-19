@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vite Logo */
+.vite-logo {
+  background-image: url("../public/vite.svg");
+}
+
+/* HTML Logo */
+.html-logo {
+  background-image: url("./assets/html.svg");
+}
