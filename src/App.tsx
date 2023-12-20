@@ -20,10 +20,11 @@ function App() {
   };
 
   const getFileContents = (id?: string) => {
-    const newID = getSelectedFile();
     if (!id) {
+      const newID = getSelectedFile();
       id = newID;
     }
+    if (!id) return "";
     return Object.values(getFileTree()).find(({ id: _id }) => _id === id)
       .content;
   };
