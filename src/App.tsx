@@ -33,13 +33,13 @@ function App() {
       <div className="flex flex-col h-full w-1/4">
         <SearchInput />
         <FileExplorer
-          validExtensions={["js", "vite", "html"]}
+          validExtensions={["js", "css", "html"]}
           onItemSelected={(item) => {
             if (item.type === "file") {
               setValue(getFileContents(item.id));
-              console.log("VVV", value);
             }
           }}
+          containerHeight="90%"
         />
       </div>
       <div className="flex flex-col h-full w-1/2">
@@ -50,8 +50,10 @@ function App() {
         <Breadcrumbs
           onBreadcrumbFileClick={(id: string) => setValue(getFileContents(id))}
         />
-        Here is a text area which will be used to edit the contents of the
-        opened file
+        <span className="text-zinc-500">
+          Here is a text area which will be used to edit the contents of the
+          opened file
+        </span>
         <textarea
           onInput={updateFileContents}
           value={value}
@@ -61,7 +63,11 @@ function App() {
         />
       </div>
       <div className="flex flex-col h-full w-1/4">
-        <SearchResults searchResultClicked={(id: string, line: number) => setValue(getFileContents(id))}/>
+        <SearchResults
+          searchResultClicked={(id: string, line: number) =>
+            setValue(getFileContents(id))
+          }
+        />
       </div>
     </div>
   );
