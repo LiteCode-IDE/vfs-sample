@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Some logos, like js, css, ts are provided by default */
+
 /* Vite Logo */
 .vite-logo {
   background-image: url("../public/vite.svg");
@@ -10,4 +12,12 @@
 /* HTML Logo */
 .html-logo {
   background-image: url("./assets/html.svg");
+}
+
+.json-logo {
+  background-image: url("./assets/json.svg");
+}
+
+.txt-logo {
+  background-image: url("./assets/txt.svg");
 }

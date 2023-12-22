@@ -20,21 +20,30 @@ function App() {
   };
 
   const getFileContents = (id?: string) => {
-    if (!id) {
-      const newID = getSelectedFile();
-      id = newID;
+    if (id === "") {
+      return "";
     }
-    if (!id) return "";
-    return Object.values(getFileTree()).find(({ id: _id }) => _id === id)
+    return Object.values(getFileTree()).find(({ id: _id }) => _id === id)!
       .content;
   };
 
   return (
     <div className="flex h-screen w-screen overflow-clip">
       <div className="flex flex-col h-full w-1/4">
-        <SearchInput />
+        <SearchInput className="bg-neutral-500 text-neutral-300 hover:bg-neutral-600 active:bg-neutral-600 focus:bg-neutral-600" />
         <FileExplorer
-          validExtensions={["js", "css", "html"]}
+          validExtensions={[
+            "js",
+            "ts",
+            "tsx",
+            "jsx",
+            "json",
+            "md",
+            "css",
+            "txt",
+            "html",
+          ]}
+          projectName="My awesome project"
           onItemSelected={(item) => {
             if (item.type === "file") {
               setValue(getFileContents(item.id));
@@ -46,7 +55,9 @@ function App() {
       <div className="flex flex-col h-full w-1/2">
         <TabsList
           onTabClick={(id: string) => setValue(getFileContents(id))}
-          onTabClose={() => setValue(getFileContents())}
+          onTabClose={() => {
+            setValue(getFileContents(getSelectedFile()))
+          }}
         />
         <Breadcrumbs
           onBreadcrumbFileClick={(id: string) => setValue(getFileContents(id))}
